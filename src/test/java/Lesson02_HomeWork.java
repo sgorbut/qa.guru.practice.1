@@ -33,13 +33,12 @@ public class Lesson02_HomeWork {
         $(".react-datepicker__year-select").selectOption("2000");       // year
         $(".react-datepicker__day--001").click();                             // day
         $("#subjectsInput").setValue("Art").pressEnter();                     // subjects
-        $(byText("Sports")).click();                                         // hobbies
+        $("#hobbiesWrapper").$(byText("Sports")).click();          // hobbies
         $("#uploadPicture").uploadFile(new File("src/test/resources/ExamplePicture.png")); // file
         $("#currentAddress").setValue("currentAddress");                      // address
         $("#react-select-3-input").setValue("Haryana").pressEnter();          // State and City
         $("#react-select-4-input").setValue("Karnal").pressEnter();           // State and City
-        $(byText("Submit")).scrollTo();                                      // scroll
-        $("#submit").click();                                                 // click Submit
+        $(byText("Submit")).scrollTo().click();                              // scroll and click Submit
 
         // popup assertions
         $(".modal-body").shouldHave(text("John"));
