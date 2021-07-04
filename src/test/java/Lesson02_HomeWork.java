@@ -2,6 +2,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -18,20 +20,40 @@ public class Lesson02_HomeWork {
     @Test
     void positiveFillTest() {
         open("/automation-practice-form");
-        $("#firstName").setValue("FirstName");          // firstName
-        $("#lastName").setValue("LastName");            // lastName
+        $("#firstName").setValue("John");               // firstName
+        $("#lastName").setValue("Doe");                 // lastName
         $("#userEmail").setValue("any_email@test.mm");  // email
-        $(byText("Male")).click();                     // gender
-        $("#userNumber").setValue("1234567890");        // mobile
-        $(byText("Submit")).scrollTo();                // scroll
-        $("#submit").click();                           // click Submit
 
-        // Assertions
-        $(".modal-body").shouldHave(text("FirstName"));
-        $(".modal-body").shouldHave(text("LastName"));
+        $(byText("Male")).click();                     // gender
+
+        $("#userNumber").setValue("1234567890");        // mobile
+
+        $("#dateOfBirthInput").clear();                                       // date of birth
+        $(".react-datepicker__month-select").selectOption("January");   // month
+        $(".react-datepicker__year-select").selectOption("2000");       // year
+        $(".react-datepicker__day--001").click();                             // day
+        $("#subjectsInput").setValue("Art").pressEnter();                     // subjects
+        $(byText("Sports")).click();                                         // hobbies
+        $("#uploadPicture").uploadFile(new File("src/test/resources/ExamplePicture.png")); // file
+        $("#currentAddress").setValue("currentAddress");                      // adress
+        $("#react-select-3-input").setValue("Haryana").pressEnter();          // State and City
+        $("#react-select-4-input").setValue("Karnal").pressEnter();           // State and City
+        $(byText("Submit")).scrollTo();                                      // scroll
+        $("#submit").click();                                                 // click Submit
+
+        // popup assertions
+        $(".modal-body").shouldHave(text("John"));
+        $(".modal-body").shouldHave(text("Doe"));
         $(".modal-body").shouldHave(text("Male"));
         $(".modal-body").shouldHave(text("any_email@test.mm"));
         $(".modal-body").shouldHave(text("1234567890"));
+        $(".modal-body").shouldHave(text("01 January,2000"));
+        $(".modal-body").shouldHave(text("Arts"));
+        $(".modal-body").shouldHave(text("Sports"));
+        $(".modal-body").shouldHave(text("ExamplePicture.png"));
+        $(".modal-body").shouldHave(text("currentAddress"));
+        $(".modal-body").shouldHave(text("Haryana"));
+        $(".modal-body").shouldHave(text("Karnal"));
     }
 
 }
