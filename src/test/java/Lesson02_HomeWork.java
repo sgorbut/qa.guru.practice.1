@@ -35,7 +35,7 @@ public class Lesson02_HomeWork {
         $("#subjectsInput").setValue("Art").pressEnter();                     // subjects
         $(byText("Sports")).click();                                         // hobbies
         $("#uploadPicture").uploadFile(new File("src/test/resources/ExamplePicture.png")); // file
-        $("#currentAddress").setValue("currentAddress");                      // adress
+        $("#currentAddress").setValue("currentAddress");                      // address
         $("#react-select-3-input").setValue("Haryana").pressEnter();          // State and City
         $("#react-select-4-input").setValue("Karnal").pressEnter();           // State and City
         $(byText("Submit")).scrollTo();                                      // scroll
