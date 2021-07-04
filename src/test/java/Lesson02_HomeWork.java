@@ -25,6 +25,7 @@ public class Lesson02_HomeWork {
         $("#userNumber").setValue("1234567890");        // mobile
         $(byText("Submit")).scrollTo();                // scroll
         $("#submit").click();                           // click Submit
+
         // Assertions
         $(".modal-body").shouldHave(text("FirstName"));
         $(".modal-body").shouldHave(text("LastName"));
