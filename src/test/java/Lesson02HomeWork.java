@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Lesson02_HomeWork {
+public class Lesson02HomeWork {
 
     @BeforeAll
     static void setup() {
@@ -19,15 +19,12 @@ public class Lesson02_HomeWork {
 
     @Test
     void positiveFillTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("John");               // firstName
-        $("#lastName").setValue("Doe");                 // lastName
-        $("#userEmail").setValue("any_email@test.mm");  // email
-
-        $(byText("Male")).click();                     // gender
-
-        $("#userNumber").setValue("1234567890");        // mobile
-
+        open("/automation-practice-form");                             // page url
+        $("#firstName").setValue("John");                                     // firstName
+        $("#lastName").setValue("Doe");                                       // lastName
+        $("#userEmail").setValue("any_email@test.mm");                        // email
+        $(byText("Male")).click();                                           // gender
+        $("#userNumber").setValue("1234567890");                              // mobile
         $("#dateOfBirthInput").clear();                                       // date of birth
         $(".react-datepicker__month-select").selectOption("January");   // month
         $(".react-datepicker__year-select").selectOption("2000");       // year
@@ -53,6 +50,7 @@ public class Lesson02_HomeWork {
         $(".modal-body").shouldHave(text("currentAddress"));
         $(".modal-body").shouldHave(text("Haryana"));
         $(".modal-body").shouldHave(text("Karnal"));
-    }
 
+        $(".modal-body").shouldHave(text("John"), text("Doe"), text("Male"));
+    }
 }
